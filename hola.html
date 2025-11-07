@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VidaPlena Contenidos - Aprende y Disfruta</title>
+
+    <style>
+        /* --- ESTILOS CSS --- */
+
+        /* 1. Configuración Global y Variables */
+        :root {
+            --color-primario: #005A9C;
+            /* Un azul serio y confiable */
+            --color-secundario: #E67E22;
+            /* Un naranja cálido para llamadas a la acción */
+            --color-fondo: #F8F9FA;
+            --color-texto: #333333;
+            --color-texto-claro: #6C757D;
+            --fuente-principal: 'Segoe UI', 'Verdana', 'Helvetica', sans-serif;
+            --sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.08);
+            --radio-borde: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--fuente-principal);
+            line-height: 1.7;
+            color: var(--color-texto);
+            background-color: var(--color-fondo);
+            font-size: 18px;
+            /* Tamaño de base más grande */
+        }
+
+        /* 2. Tipografía y Utilidades */
+        h1,
+        h2,
+        h3 {
+            color: var(--color-primario);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+        }
+
+        .contenedor {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: var(--color-secundario);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--radio-borde);
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #d35400;
+            transform: translateY(-3px);
+        }
+
+        .btn-secundario {
+            background-color: var(--color-primario);
+        }
+
+        .btn-secundario:hover {
+            background-color: #004170;
+        }
+
+        /* 3. Header y Navegación */
+        .header-principal {
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: var(--sombra-suave);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-contenedor {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-primario);
+            text-decoration: none;
+        }
+
+        .nav-menu a {
+            color: var(--color-texto);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-secundario);
+        }
+
+        .menu-hamburguesa {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-hamburguesa span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--color-primario);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* 4. Sección Hero */
+        .hero {
+            background: linear-gradient(rgba(0, 90, 156, 0.7), rgba(0, 90, 156, 0.7)), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            color: #f0f0f0;
+        }
+
+        /* 5. Sección de Cursos */
+        .seccion-cursos {
+            padding: 80px 0;
+        }
+
+        .cursos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .curso-card {
+            background-color: white;
+            border-radius: var(--radio-borde);
+            overflow: hidden;
+            box-shadow: var(--sombra-suave);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .curso-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .curso-card-header {
+            background-color: var(--color-primario);
+            color: white;
+            padding: 20px;
+            font-size: 3rem;
+            text-align: center;
+        }
+
+        .curso-card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .curso-card-body h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .curso-card-body p {
+            color: var(--color-texto-claro);
+            flex-grow: 1;
+        }
+
+        /* 6. Sección de Planes */
+        .seccion-planes {
+            background-color: white;
+            padding: 80px 0;
+        }
+
+        .planes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .plan-card {
+            border: 2px solid #e0e0e0;
+            border-radius: var(--radio-borde);
+            padding: 30px;
+            text-align: center;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .plan-card.recomendado {
+            border-color: var(--color-secundario);
+            transform: scale(1.05);
+            box-shadow: var(--sombra-suave);
+        }
+
+        .plan-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .plan-card .precio {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--color-primario);
+            margin: 20px 0;
+        }
+
+        .plan-card .precio span {
+            font-size: 1rem;
+            color: var(--color-texto-claro);
+        }
+
+        .plan-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .plan-card ul li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .plan-card ul li::before {
+            content: '✔️';
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* 7. Sección de Testimonios */
+        .seccion-testimonios {
+            padding: 80px 0;
+        }
+
+        .testimonios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonio-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--radio-borde);
+            box-shadow: var(--sombra-suave);
+            font-style: italic;
+        }
+
+        .testimonio-card p {
+            margin-bottom: 20px;
+        }
+
+        .testimonio-card footer {
+            font-weight: bold;
+            color: var(--color-primario);
+            text-align: right;
+            font-style: normal;
+        }
+
+        /* 8. Footer y Contacto */
+        .footer-principal {
+            background-color: var(--color-primario);
+            color: white;
+            padding: 40px 0 20px 0;
+            text-align: center;
+        }
+
+        .footer-principal p {
+            margin-bottom: 10px;
+        }
+
+        .footer-principal a {
+            color: var(--color-secundario);
+            text-decoration: none;
+        }
+
+        .formulario-contacto {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .formulario-contacto input,
+        .formulario-contacto textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            border-radius: var(--radio-borde);
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            font-family: var(--fuente-principal);
+        }
+
+        .formulario-contacto textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        #mensaje-exito {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #28a745;
+            color: white;
+            border-radius: var(--radio-borde);
+            display: none;
+            /* Oculto por defecto */
+        }
+
+        /* 9. Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: var(--sombra-suave);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .menu-hamburguesa {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .plan-card.recomendado {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- --- ESTRUCTURA HTML --- -->
+
+    <header class="header-principal">
+        <div class="contenedor nav-contenedor">
+            <a href="#inicio" class="logo">🌿 VidaPlena Contenidos</a>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#cursos">Cursos</a></li>
+                    <li><a href="#planes">Planes</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <div class="menu-hamburguesa" id="menuHamburguesa">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="contenedor">
+                <h1>Descubre, Aprende y Disfruta en Cada Etapa</h1>
+                <p>Contenido digital diseñado para ti. Explora nuevos hobbies, aprende a tu ritmo y mantente conectado
+                    con el mundo.</p>
+                <a href="#cursos" class="btn">Ver Nuestros Cursos</a>
+            </div>
+        </section>
+
+        <section id="cursos" class="seccion-cursos">
+            <div class="contenedor">
+                <h2>Nuestros Contenidos Para Ti</h2>
+                <div class="cursos-grid">
+                    <article class="curso-card">
+                        <div class="curso-card-header">🌳</div>
+                        <div class="curso-card-body">
+                            <h3>Jardinería y Huerto</h3>
+                            <p>Aprende a cultivar tus propias plantas, hierbas y verduras. Videos sencillos y guías paso
+                                a paso para tener un pulgar verde.</p>
+                            <a href="#" class="btn btn-secundario">Saber Más</a>
+                        </div>
+                    </article>
+                    <article class="curso-card">
+                        <div class="curso-card-header">🍳</div>
+                        <div class="curso-card-body">
+                            <h3>Cocina Saludable y Sabrosa</h3>
+                            <p>Recetas deliciosas y nutritivas, adaptadas para una alimentación equilibrada. Descubre
+                                nuevos sabores y recetas clásicas.</p>
+                            <a href="#" class="btn btn-secundario">Saber Más</a>
+                        </div>
+                    </article>
+                    <article class="curso-card">
+                        <div class="curso-card-header">💻</div>
+                        <div class="curso-card-body">
+                            <h3>Tecnología para Todos</h3>
+                            <p>Aprende a usar tu smartphone, tablet o computadora con confianza. Llama a tus seres
+                                queridos, navega por internet y más.</p>
+                            <a href="#" class="btn btn-secundario">Saber Más</a>
+                        </div>
+                    </article>
+                    <article class="curso-card">
+                        <div class="curso-card-header">🎨</div>
+                        <div class="curso-card-body">
+                            <h3>Arte y Manualidades</h3>
+                            <p>Despierta tu creatividad con clases de pintura, dibujo, tejido y otras manualidades. Un
+                                mundo de expresión te espera.</p>
+                            <a href="#" class="btn btn-secundario">Saber Más</a>
+                        </div>
+                    </article>
+                    <article class="curso-card">
+                        <div class="curso-card-header">📚</div>
+                        <div class="curso-card-body">
+                            <h3>Historia y Cultura</h3>
+                            <p>Viaja en el tiempo con nuestros documentales y artículos fascinantes. Aprende sobre la
+                                historia, el arte y la música.</p>
+                            <a href="#" class="btn btn-secundario">Saber Más</a>
+                        </div>
+                    </article>
+                    <article class="curso-card">
+                        <div class="curso-card-header">🧘</div>
+                        <div class="curso-card-body">
+                            <h3>Bienestar y Mindfulness</h3>
+                            <p>Encuentra la calma y el equilibrio con ejercicios de meditación, estiramientos suaves y
+                                consejos para una vida plena.</p>
+                            <a href="#" class="btn btn-secundario">Saber Más</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="planes" class="seccion-planes">
+            <div class="contenedor">
+                <h2>Elige el Plan Perfecto para Ti</h2>
+                <div class="planes-grid">
+                    <div class="plan-card">
+                        <h3>Plan Básico</h3>
+                        <p>Acceso a una selección de nuestros cursos más populares.</p>
+                        <div class="precio">$9.99 <span>/ mes</span></div>
+                        <ul>
+                            <li>Acceso a 20+ cursos</li>
+                            <li>Nuevos contenidos cada mes</li>
+                            <li>Soporte por email</li>
+                        </ul>
+                        <a href="#" class="btn btn-secundario">Suscribirse</a>
+                    </div>
+                    <div class="plan-card recomendado">
+                        <h3>Plan Premium</h3>
+                        <p>Todo el contenido que necesitas para nunca parar de aprender.</p>
+                        <div class="precio">$19.99 <span>/ mes</span></div>
+                        <ul>
+                            <li>Acceso ILIMITADO a todos los cursos</li>
+                            <li>Nuevos contenidos semanales</li>
+                            <li>Clases en vivo y exclusivas</li>
+                            <li>Soporte prioritario</li>
+                        </ul>
+                        <a href="#" class="btn">Suscribirse</a>
+                    </div>
+                    <div class="plan-card">
+                        <h3>Plan Anual</h3>
+                        <p>La mejor opción. Ahorra y disfruta de un año completo de contenido.</p>
+                        <div class="precio">$199 <span>/ año</span></div>
+                        <ul>
+                            <li>Todos los beneficios del Plan Premium</li>
+                            <li>Ahorro de 2 meses (¡40 USD!)</li>
+                            <li>Regalo exclusivo de bienvenida</li>
+                        </ul>
+                        <a href="#" class="btn btn-secundario">Suscribirse</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonios" class="seccion-testimonios">
+            <div class="contenedor">
+                <h2>Lo que dicen nuestros miembros</h2>
+                <div class="testimonios-grid">
+                    <blockquote class="testimonio-card">
+                        <p>"Nunca pensé que aprendería a usar videollamadas para hablar con mis nietos. ¡Ahora es mi
+                            parte favorita del día! Las explicaciones son muy claras y patientes."</p>
+                        <footer>- Carmen G., 72 años</footer>
+                    </blockquote>
+                    <blockquote class="testimonio-card">
+                        <p>"Los cursos de jardinería me han devuelto una ilusión que tenía perdida. Mi pequeño balcón
+                            ahora está lleno de vida y color. ¡Gracias, VidaPlena!"</p>
+                        <footer>- Luis M., 68 años</footer>
+                    </blockquote>
+                    <blockquote class="testimonio-card">
+                        <p>"El plan premium vale cada centavo. Hay tantas cosas interesantes que aprender que no me
+                            aburro nunca. Me siento activa y con la mente despierta."</p>
+                        <footer>- Ana P., 75 años</footer>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto" class="footer-principal">
+        <div class="contenedor">
+            <h2>¿Tienes alguna pregunta?</h2>
+            <p>Estamos aquí para ayudarte. Envíanos un mensaje y te responderemos lo antes posible.</p>
+
+            <form class="formulario-contacto" id="contactForm">
+                <input type="text" name="nombre" placeholder="Tu Nombre" required>
+                <input type="email" name="email" placeholder="Tu Correo Electrónico" required>
+                <textarea name="mensaje" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                <button type="submit" class="btn">Enviar Mensaje</button>
+            </form>
+            <div id="mensaje-exito">¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.</div>
+
+            <p style="margin-top: 40px;">&copy; 2024 VidaPlena Contenidos. Todos los derechos reservados.</p>
+            <p><a href="mailto:hola@vidaplena.com">hola@vidaplena.com</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // --- CÓDIGO JAVASCRIPT ---
+
+        // 1. Menú de Navegación Móvil (Hamburguesa)
+        const menuHamburguesa = document.getElementById('menuHamburguesa');
+        const navMenu = document.getElementById('navMenu');
+
+        menuHamburguesa.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Cerrar el menú al hacer clic en un enlace (en móvil)
+        document.querySelectorAll('.nav-menu a').forEach(enlace => {
+            enlace.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // 2. Simulación de Envío de Formulario de Contacto
+        const contactForm = document.getElementById('contactForm');
+        const mensajeExito = document.getElementById('mensaje-exito');
+
+        contactForm.addEventListener('submit', function (event) {
+            // Prevenir el envío real del formulario
+            event.preventDefault();
+
+            // Mostrar el mensaje de éxito
+            mensajeExito.style.display = 'block';
+
+            // Limpiar los campos del formulario
+            contactForm.reset();
+
+            // Ocultar el mensaje de éxito después de 5 segundos
+            setTimeout(() => {
+                mensajeExito.style.display = 'none';
+            }, 5000);
+        });
+
+    </script>
+
+</body>
+
+</html>
